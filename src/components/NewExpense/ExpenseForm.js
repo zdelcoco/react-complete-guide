@@ -29,6 +29,12 @@ const ExpenseForm = (props) => {
       date: new Date(enteredDate.toString().replace(/-/g, '/'))  //funkiness with date conversion, replaces '-' with '/' for correct interpretation
     };
 
+    /* prevents user from entering expense with invalid data */
+    if (expenseData.title === ""  || expenseData.amount < 0.01 || !isValidDate( expenseData.date )) {
+      // TODO!!! --add an error popup or something
+      return;
+    };
+
     props.onSaveExpenseData(expenseData);
     resetForm();    
   };
@@ -37,6 +43,10 @@ const ExpenseForm = (props) => {
     setEnteredTitle('');
     setEnteredAmount('');
     setEnteredDate('');
+  };
+
+  const isValidDate = (d) => {
+    return d instanceof Date && !isNaN(d);
   };
 
   return (
