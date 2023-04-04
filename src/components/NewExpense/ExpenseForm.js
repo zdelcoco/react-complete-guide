@@ -26,7 +26,7 @@ const ExpenseForm = (props) => {
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
-      date: new Date(enteredDate.toString().replace(/-/g, '\/'))  //funkiness with date conversion, replaces '-' with '/' for correct interpretation
+      date: new Date(enteredDate.toString().replace(/-/g, '/'))  //funkiness with date conversion, replaces '-' with '/' for correct interpretation
     };
 
     props.onSaveExpenseData(expenseData);
