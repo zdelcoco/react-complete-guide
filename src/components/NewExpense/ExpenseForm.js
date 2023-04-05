@@ -7,16 +7,6 @@ const ExpenseForm = (props) => {
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
 
-  const [addMode, setAddMode] = useState('False');
-
-  const cancelClickHandler = () => {
-    setAddMode('False');
-  };
-
-  const addNewExpenseClickHandler = () => {
-    setAddMode('True');
-  };
-
   const titleChangeHandler = (event) => {    
     setEnteredTitle(event.target.value);
   };
@@ -59,14 +49,6 @@ const ExpenseForm = (props) => {
     return d instanceof Date && !isNaN(d);
   };
 
-  if (addMode === 'False') {
-    return (
-      <div className="new-expense__new">
-        <button onClick={addNewExpenseClickHandler}>Add New Expense</button>          
-      </div> 
-    );
-  };
-
   return (
     <form onSubmit={submitHandler}>      
       <div className="new-expense__controls">
@@ -97,7 +79,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button onClick={cancelClickHandler}>Cancel</button>
+        <button type="button" onClick={props.onCancel}>Cancel</button>
         <button type="submit">Add Expense</button>          
       </div>  
     </form>
